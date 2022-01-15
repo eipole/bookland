@@ -1,0 +1,3 @@
+npm run devStart - starter nodemon
+linje i package.json -     "devStart": "nodemon index.js"
+ellers - node index.js
