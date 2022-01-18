@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { fetchAll } from "../utils/api-client"
 import { useQuery } from "react-query"
 import styled from "styled-components"
+import orav from "../images/orav.jpg"
 const BookDiv = styled("div")`
   background-color: papayawhip;
 `
@@ -18,21 +19,21 @@ export default function AllBooks() {
   const { data, isLoading, error, isSuccess } = useQuery("FetchBooks", fetchAll)
   if (isLoading) return "Loading....."
   if (error) console.error("viga siga" + error)
-  console.log(data)
+  // console.log(data)
   return (
     <WrapperDiv>
-      <p>All books here</p>
-      {data &&
+      <h1>All books here</h1>
+      {isSuccess &&
         data.map((elem) => (
-          <BookDiv key={elem.id}>
-            <h1>{elem.title}</h1>
-            <p>Kirjanik:</p>
-            <h2>{elem.first_name}</h2>
-            <h2>{elem.last_name}</h2>
+          <BookDiv key={elem._id}>
+            <img alt="orav" src={orav} />
+            <h2>{elem.title}</h2>
+            <Link to={`/onebook/${elem._id}`}>Show details</Link>
             <hr></hr>
           </BookDiv>
         ))}
       <Link to="/">Home</Link>
+      <Link to="/addbook">TestPage</Link>
     </WrapperDiv>
   )
 }

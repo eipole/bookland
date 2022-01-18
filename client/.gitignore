@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+seeds.js
 # production
 /build
 

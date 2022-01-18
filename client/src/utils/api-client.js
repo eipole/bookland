@@ -1,17 +1,15 @@
 import axios from "axios"
 const client = axios.create({
-  baseURL: "http://localhost:8080"
+  baseURL: "http://localhost:8080",
 })
 
 // export async function fetchBooks(func) {
 //   await client.get("/").then((res) => func(res.data))
 // }
 
-
-
 export async function fetchAll() {
   try {
-    const response = await client.get("/api").then((res) => (res.data))
+    const response = await client.get("/api").then((res) => res.data)
     return response
   } catch (error) {
     console.log("siin on viga", error)

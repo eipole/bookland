@@ -1,3 +1,7 @@
-npm run devStart - starter nodemon
-linje i package.json -     "devStart": "nodemon index.js"
-ellers - node index.js
+#npm run devStart - starter nodemon
+#linje i package.json -     "devStart": "nodemon index.js"
+# or - node index.js
+
+
+Todos -
+Add seeds file to .gitignore

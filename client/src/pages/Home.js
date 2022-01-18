@@ -14,6 +14,7 @@ const StyledHomepage = styled.div`
 export default function Home() {
   return (
     <StyledHomepage>
+      <h1>Homepage</h1>
       <p>
         Nisi minim labore pariatur consectetur nisi ullamco consectetur deserunt
         occaecat. Qui quis eiusmod quis id ex veniam ad voluptate culpa dolor.
@@ -22,7 +23,7 @@ export default function Home() {
       </p>
       <nav>
         <Link to="allbooks">All books</Link>
-        <Link to="onebook">Selected book</Link>
+        <Link to="addbook">AddBook</Link>
       </nav>
     </StyledHomepage>
   )
