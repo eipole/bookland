@@ -1,8 +1,9 @@
 import React from "react"
-import "./mainstyles.css"
+// import "./mainstyles.css"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router } from "react-router-dom"
+import Layout from "./components/Layout"
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,16 +13,16 @@ export const queryClient = new QueryClient({
         if (error.status === 404) return false
         else if (failureCount < 2) return true
         else return false
-      }
-    }
-  }
+      },
+    },
+  },
 })
 
 export default function AppProviders({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        {children}
+        <Layout>{children}</Layout>
         <ReactQueryDevtools />
       </Router>
     </QueryClientProvider>

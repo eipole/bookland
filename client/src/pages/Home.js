@@ -22,8 +22,8 @@ export default function Home() {
         nulla. Dolor do ullamco exercitation ipsum esse id anim.
       </p>
       <nav>
-        <Link to="allbooks">All books</Link>
-        <Link to="addbook">AddBook</Link>
+        <Link to="/allbooks">All books</Link>
+        <Link to="/addbook">AddBook</Link>
       </nav>
     </StyledHomepage>
   )
