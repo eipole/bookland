@@ -1,9 +1,11 @@
 import React from "react"
-import GlobalStyles from "../GlobalStyles"
-import "normalize.css"
+import GlobalStyles from "../styles/GlobalStyles"
+// import Header from "./Header"
+// import "normalize.css"
 export default function Layout({ children }) {
   return (
     <>
+      {/* <Header /> */}
       <GlobalStyles />
       {children}
     </>
