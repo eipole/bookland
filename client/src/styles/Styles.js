@@ -5,7 +5,8 @@ export const PageWrapper = styled.div`
   background-color: var(--clr-light);
   h1 {
     margin: 0;
-    padding-top: 2em;
+    padding: 2em;
     text-align: center;
+    font-size: var(--fs-h1);
   }
 `

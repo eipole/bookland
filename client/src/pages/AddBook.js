@@ -4,19 +4,31 @@ import { useMutation } from "react-query"
 import { addOne } from "../utils/api-client"
 import { queryClient } from "../AppProviders"
 import styled from "styled-components"
-import { PageWrapper } from "../styles/Styles"
-const StyledAdd = styled(PageWrapper)`
-  color: blueviolet;
-  div {
+const StyledAdd = styled.div`
+  display: flex;
+  justify-content: center;
+  label {
     display: flex;
-    flex-direction: row;
-    border: 2px solid red;
-    justify-content: space-between;
-    align-content: space-between;
+    flex-direction: column;
+  }
+  fieldset {
+    border-width: 1px;
+    border-color: var(--clr-grey);
+    margin-top: 2em;
   }
   input,
   textarea {
+    border: 0;
+    border-bottom: 2px solid var(--clr-dark);
     margin-top: 1em;
+    padding-top: 1em;
+    box-shadow: var(--bs);
+  }
+  button {
+    margin-top: 2em;
+    &:hover {
+      background-color: var(--clr-red);
+    }
   }
 `
 
@@ -59,55 +71,63 @@ export default function AddBook() {
 
   return (
     <StyledAdd>
-      <h1>Add new book</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title:</label>
-          <input
-            onChange={handleChange}
-            value={book.title}
-            type="text"
-            name="title"
-            placeholder="book title"
-          />
-        </div>
-        <div>
-          <label>
-            Author:
-            <input
-              onChange={handleChange}
-              value={book.first_name}
-              type="text"
-              name="first_name"
-              placeholder="first name"
-            />
-            <input
-              onChange={handleChange}
-              value={book.last_name}
-              type="text"
-              name="last_name"
-              placeholder="last name"
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Description:
-            <textarea
-              rows="5"
-              cols="33"
-              // id="description"
-              onChange={handleChange}
-              value={book.description}
-              type="text"
-              name="description"
-              placeholder="Midagi raamatust..."
-            />
-          </label>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+        <h1>Add new book</h1>
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+            <legend>About the book</legend>
+            <label>
+              <span>Title</span>
+              <input
+                onChange={handleChange}
+                value={book.title}
+                type="text"
+                name="title"
+                placeholder="book title"
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Author</legend>
+            <label>
+              <span>First name</span>
+              <input
+                onChange={handleChange}
+                value={book.first_name}
+                type="text"
+                name="first_name"
+                placeholder="first name"
+              />
+            </label>
+            <label>
+              <span>Last name</span>
+              <input
+                onChange={handleChange}
+                value={book.last_name}
+                type="text"
+                name="last_name"
+                placeholder="last name"
+              />
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Write about the book</legend>
+            <label>
+              <span>Description:</span>
+              <textarea
+                rows="5"
+                cols="33"
+                onChange={handleChange}
+                value={book.description}
+                type="text"
+                name="description"
+                placeholder="Midagi raamatust..."
+              />
+            </label>
+          </fieldset>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </StyledAdd>
   )
 }
-// added form

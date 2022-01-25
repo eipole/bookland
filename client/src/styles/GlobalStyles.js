@@ -25,15 +25,15 @@ const GlobalStyles = createGlobalStyle`
   --fs-h1: 3rem;
   --fs-h2: 2.25rem;
   --fs-h3: 1.25rem;
-  --fs-body: 1rem;
+  --fs-body: 2rem;
 
   --bs: 0.25em 0.25em 0.75em rgba(0, 0, 0, 0.25),
-    0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
+   0.125em 0.125em 0.25em rgba(0, 0, 0, 0.15);
 
   }
   html {
-     /* background-attachment: fixed; */
-    font-size: 16px;
+      /* background-attachment: fixed;   */
+    font-size: 10px;
   }
 
   body {
@@ -41,17 +41,14 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   background: var(--clr-light);
   color: var(--clr-dark);
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0;
   font-family: var(--ff-primary);
   font-size: var(--fs-body);
   line-height: 1.6;
     }
 
-  fieldset {
-    border-color: rgba(0,0,0,0.1);
-    border-width: 1px;
-  }
+ 
 
   button {
     background: var(--clr-accent);
@@ -60,12 +57,8 @@ const GlobalStyles = createGlobalStyle`
     padding: 0.6rem 1rem;
     border-radius: 2px;
     cursor: pointer;
-    --cast: 2px;
-    box-shadow: var(--cast) var(--cast) 0 var(--grey);
-    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
-    transition: all 0.2s;
-    &:hover {
-      --cast: 4px;
+     &:hover {
+      text-shadow: 4px;
     }
   }
 
@@ -84,11 +77,11 @@ const GlobalStyles = createGlobalStyle`
   height: 200px;
   }
 
-  .tilt {
+  /* .tilt {
     transform: rotate(-2deg);
     position: relative;
     display: inline-block;
-  }
+  } */
  
 `
 
