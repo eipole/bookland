@@ -69,6 +69,9 @@ export default function Header() {
               <StyledLink to="/addbook">Add book</StyledLink>
             </li>
             {/* <li>
+              <StyledLink to="/addbookmutation">AddBookMutation</StyledLink>
+            </li> */}
+            {/* <li>
               <StyledLink to="/onebook/:id">showbook</StyledLink>
             </li> */}
             <li>

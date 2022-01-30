@@ -24,9 +24,12 @@ const WrapperDiv = styled("div")`
 `
 
 export default function AllBooks() {
-  const { data, isLoading, error, isSuccess } = useQuery("FetchBooks", fetchAll)
+  const { data, isLoading, error, isSuccess, isFetching, isRefetching } =
+    useQuery("FetchBooks", fetchAll)
   if (isLoading) return "Loading....."
   if (error) console.error("viga siga" + error)
+  // if (isFetching) console.log("toodab1")
+  // if (isRefetching) console.log("toodab2")
   // console.log(data)
   return (
     <>

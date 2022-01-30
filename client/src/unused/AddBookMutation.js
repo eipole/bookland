@@ -1,10 +1,9 @@
 import React, { useState } from "react"
 import { useMutation } from "react-query"
-import { addOne } from "../utils/api-client"
-import { queryClient } from "../AppProviders"
 import styled from "styled-components"
-import { isTextValid } from "../functions/validate"
-import { useNavigate } from "react-router-dom"
+import { queryClient } from "../AppProviders"
+import { addOne } from "../utils/api-client"
+
 const StyledAdd = styled.div`
   display: flex;
   justify-content: center;
@@ -33,12 +32,10 @@ const StyledAdd = styled.div`
   }
 `
 
-export default function AddBook() {
-  const navigate = useNavigate()
-  const { mutate } = useMutation(addOne, {
+export default function AddBookMutation() {
+  const { mutate, isSuccess } = useMutation(addOne, {
     onSuccess: () => {
       queryClient.invalidateQueries("FetchBooks")
-      navigate("/allbooks")
     },
   })
 
@@ -49,8 +46,6 @@ export default function AddBook() {
     description: "",
     completed: false,
   })
-  console.log(book.completed)
-
   function resetForm() {
     setBook({
       title: "",
@@ -61,24 +56,26 @@ export default function AddBook() {
     })
   }
   function handleChange(event) {
-    const { name, value, type, checked } = event.target
-    console.log(event.target)
-    const asi = type === "checkbox" ? checked : value
+    // console.log(event)
+    const { name, value } = event.target
     setBook((prev) => ({
       ...prev,
-      [name]: asi,
+      [name]: value,
     }))
   }
 
   async function handleSubmit(event) {
     event.preventDefault()
-    mutate(book)
+    // console.log(isTextValid(book.description))
+    await mutate(book)
+    //   await addOne(book)
     resetForm()
   }
 
   return (
     <StyledAdd>
       <div>
+        {isSuccess && console.log("added")}
         <h1>Add new book</h1>
         <form onSubmit={handleSubmit}>
           <fieldset>
@@ -118,32 +115,20 @@ export default function AddBook() {
             </label>
           </fieldset>
           <fieldset>
-            <legend>Have you read it?</legend>
-            <input
-              onChange={handleChange}
-              type="checkbox"
-              value={book.completed}
-              name="completed"
-              placeholder="Readed?"
-            />
+            <legend>Write about the book</legend>
+            <label>
+              <span>Description:</span>
+              <textarea
+                rows="5"
+                cols="33"
+                onChange={handleChange}
+                value={book.description}
+                type="text"
+                name="description"
+                placeholder="Midagi raamatust..."
+              />
+            </label>
           </fieldset>
-          {book.completed && (
-            <fieldset>
-              <legend>Write about the book</legend>
-              <label>
-                <span>Description:</span>
-                <textarea
-                  rows="5"
-                  cols="33"
-                  onChange={handleChange}
-                  value={book.description}
-                  type="text"
-                  name="description"
-                  placeholder="Midagi raamatust..."
-                />
-              </label>
-            </fieldset>
-          )}
           <button type="submit">Submit</button>
         </form>
       </div>

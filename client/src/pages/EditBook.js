@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useMutation } from "react-query"
-import { addOne } from "../utils/api-client"
+import { editOne } from "../utils/api-client"
 import { queryClient } from "../AppProviders"
 import styled from "styled-components"
 import { isTextValid } from "../functions/validate"
@@ -33,9 +33,9 @@ const StyledAdd = styled.div`
   }
 `
 
-export default function AddBook() {
+export default function EditBook({ data }) {
   const navigate = useNavigate()
-  const { mutate } = useMutation(addOne, {
+  const { mutate } = useMutation(editOne, {
     onSuccess: () => {
       queryClient.invalidateQueries("FetchBooks")
       navigate("/allbooks")
@@ -43,14 +43,14 @@ export default function AddBook() {
   })
 
   const [book, setBook] = useState({
-    title: "",
-    first_name: "",
-    last_name: "",
-    description: "",
-    completed: false,
+    _id: data._id,
+    title: data.title,
+    first_name: data.first_name,
+    last_name: data.last_name,
+    description: data.description,
+    completed: data.completed,
   })
-  console.log(book.completed)
-
+  console.log(book)
   function resetForm() {
     setBook({
       title: "",
@@ -62,7 +62,6 @@ export default function AddBook() {
   }
   function handleChange(event) {
     const { name, value, type, checked } = event.target
-    console.log(event.target)
     const asi = type === "checkbox" ? checked : value
     setBook((prev) => ({
       ...prev,
@@ -72,14 +71,16 @@ export default function AddBook() {
 
   async function handleSubmit(event) {
     event.preventDefault()
+    console.log(book)
     mutate(book)
-    resetForm()
+
+    // resetForm()
   }
 
   return (
     <StyledAdd>
       <div>
-        <h1>Add new book</h1>
+        <h1>Edit this book</h1>
         <form onSubmit={handleSubmit}>
           <fieldset>
             <legend>About the book</legend>
@@ -144,7 +145,7 @@ export default function AddBook() {
               </label>
             </fieldset>
           )}
-          <button type="submit">Submit</button>
+          <button type="submit">Edit book</button>
         </form>
       </div>
     </StyledAdd>

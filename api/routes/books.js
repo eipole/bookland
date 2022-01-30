@@ -33,8 +33,9 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 })
-
+// Edit book
 router.patch("/:id", getBook, async (req, res) => {
+  console.log(req.body)
   res.book.title = req.body.title
   res.book.first_name = req.body.first_name
   res.book.last_name = req.body.last_name
@@ -62,7 +63,7 @@ async function getBook(req, res, next) {
   try {
     book = await Book.findById(req.params.id)
     if (book == null) {
-      return res.status(404).json({ message: "Cannot find subscriber" })
+      return res.status(404).json({ message: "Cannot find Book" })
     }
   } catch (err) {
     return res.status(500).json({ message: err.message })

@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*")
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT")
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PATCH, PUT")
   res.setHeader("Access-Control-Allow-Headers", "content-type")
   // res.set(
   //   "Content-Security-Policy",
