@@ -16,26 +16,41 @@ const BookDiv = styled("div")`
   & > * {
   }
 `
-const WrapperDiv = styled("div")`
+const Container = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  /* h1 {
+    display: block;
+  } */
+  h1 {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+  gap: 2em;
+  & div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
 `
 
+// const WrapperDiv = styled("div")`
+//   display: flex;
+//   justify-content: center;
+//   flex-wrap: wrap;
+//   gap: 2rem;
+// `
+
 export default function AllBooks() {
-  const { data, isLoading, error, isSuccess, isFetching, isRefetching } =
-    useQuery("FetchBooks", fetchAll)
+  const { data, isLoading, error, isSuccess } = useQuery("FetchBooks", fetchAll)
   if (isLoading) return "Loading....."
   if (error) console.error("viga siga" + error)
-  // if (isFetching) console.log("toodab1")
-  // if (isRefetching) console.log("toodab2")
-  // console.log(data)
+
   return (
     <>
       <PageWrapper>
         <h1>All books here</h1>
-        <WrapperDiv>
+        <Container>
           {isSuccess &&
             data.map((elem) => (
               <BookDiv key={elem._id}>
@@ -45,7 +60,7 @@ export default function AllBooks() {
                 <hr></hr>
               </BookDiv>
             ))}
-        </WrapperDiv>
+        </Container>
       </PageWrapper>
     </>
   )

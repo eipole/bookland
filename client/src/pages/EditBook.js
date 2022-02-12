@@ -1,10 +1,10 @@
 import React, { useState } from "react"
-import { useMutation } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import { editOne } from "../utils/api-client"
 import { queryClient } from "../AppProviders"
 import styled from "styled-components"
 import { isTextValid } from "../functions/validate"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 const StyledAdd = styled.div`
   display: flex;
   justify-content: center;
@@ -35,6 +35,7 @@ const StyledAdd = styled.div`
 
 export default function EditBook({ data }) {
   const navigate = useNavigate()
+
   const { mutate } = useMutation(editOne, {
     onSuccess: () => {
       queryClient.invalidateQueries("FetchBooks")
@@ -51,15 +52,7 @@ export default function EditBook({ data }) {
     completed: data.completed,
   })
   console.log(book)
-  function resetForm() {
-    setBook({
-      title: "",
-      first_name: "",
-      last_name: "",
-      description: "",
-      completed: false,
-    })
-  }
+
   function handleChange(event) {
     const { name, value, type, checked } = event.target
     const asi = type === "checkbox" ? checked : value
@@ -71,10 +64,7 @@ export default function EditBook({ data }) {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    console.log(book)
     mutate(book)
-
-    // resetForm()
   }
 
   return (

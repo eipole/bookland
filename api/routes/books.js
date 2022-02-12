@@ -35,7 +35,6 @@ router.post("/", async (req, res) => {
 })
 // Edit book
 router.patch("/:id", getBook, async (req, res) => {
-  console.log(req.body)
   res.book.title = req.body.title
   res.book.first_name = req.body.first_name
   res.book.last_name = req.body.last_name
