@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import { fetchAll } from "../utils/api-client"
 import { useQuery } from "react-query"
 import styled from "styled-components"
@@ -56,11 +56,12 @@ export default function AllBooks() {
               <BookDiv key={elem._id}>
                 <img alt="orav" src={orav} />
                 <h2>{elem.title}</h2>
-                <Link to={`/onebook/${elem._id}`}>Show details</Link>
+                <Link to={`/allbooks/${elem._id}`}>Show details</Link>
                 <hr></hr>
               </BookDiv>
             ))}
         </Container>
+        <Outlet />
       </PageWrapper>
     </>
   )

@@ -3,7 +3,7 @@ import React from "react"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import { BrowserRouter as Router } from "react-router-dom"
-import Layout from "./components/Layout"
+// import Layout from "./unused/Layout"
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +22,8 @@ export default function AppProviders({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Layout>{children}</Layout>
+        {/* <Layout>{children}</Layout> */}
+        {children}
         <ReactQueryDevtools />
       </Router>
     </QueryClientProvider>

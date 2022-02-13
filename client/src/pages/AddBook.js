@@ -49,7 +49,7 @@ export default function AddBook() {
     description: "",
     completed: false,
   })
-  console.log(book.completed)
+  // console.log(book.completed)
 
   function resetForm() {
     setBook({

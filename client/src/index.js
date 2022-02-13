@@ -1,12 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
+import AllRoutes from "./AllRoutes"
+// import App from "./App"
 import AppProviders from "./AppProviders"
 
 ReactDOM.render(
   <React.StrictMode>
     <AppProviders>
-      <App />
+      {/* <App /> */}
+      <AllRoutes />
     </AppProviders>
   </React.StrictMode>,
   document.getElementById("root")

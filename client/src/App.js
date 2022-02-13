@@ -1,9 +1,14 @@
 import React from "react"
-import AllRoutes from "./AllRoutes"
+import { Outlet } from "react-router-dom"
+import Header from "./components/Header"
+import GlobalStyles from "./styles/GlobalStyles"
+import "normalize.css"
 function App() {
   return (
     <div>
-      <AllRoutes />
+      <Header />
+      <GlobalStyles />
+      <Outlet />
     </div>
   )
 }
