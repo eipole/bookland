@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, Outlet } from "react-router-dom"
 import { fetchAll } from "../utils/api-client"
 import { useQuery } from "react-query"
 import styled from "styled-components"
 import orav from "../images/orav.jpg"
 import { PageWrapper } from "../styles/Styles"
+import Modal from "../components/Modal"
 const BookDiv = styled("div")`
   display: flex;
   flex-direction: column;
@@ -42,10 +43,14 @@ const Container = styled.div`
 // `
 
 export default function AllBooks() {
+  const [vise, setVise] = useState(false)
   const { data, isLoading, error, isSuccess } = useQuery("FetchBooks", fetchAll)
   if (isLoading) return "Loading....."
   if (error) console.error("viga siga" + error)
 
+  function toggleModal() {
+    setVise((prev) => !prev)
+  }
   return (
     <>
       <PageWrapper>
@@ -56,12 +61,16 @@ export default function AllBooks() {
               <BookDiv key={elem._id}>
                 <img alt="orav" src={orav} />
                 <h2>{elem.title}</h2>
-                <Link to={`/allbooks/${elem._id}`}>Show details</Link>
+                <Link onClick={toggleModal} to={`/allbooks/${elem._id}`}>
+                  Show details
+                </Link>
                 <hr></hr>
               </BookDiv>
             ))}
         </Container>
-        <Outlet />
+        <Modal vise={vise} toggleModal={toggleModal}>
+          <Outlet />
+        </Modal>
       </PageWrapper>
     </>
   )

@@ -23,7 +23,7 @@ const StyledOverlay = styled.div`
 
 export default function Modal({ vise, children, toggleModal }) {
   //   if (!vise) return null
-  console.log(window.location.pathname)
+  // console.log(window.location.pathname)
 
   return reactDom.createPortal(
     <>
